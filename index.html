@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WU Wangbo | Digital Marketing & AI</title>
+    <style>
+        /* Import Premium Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Neue+Haas+Grotesk+Display+Pro:wght@400;600&family=Inter:wght@300;400;500&display=swap');
+
+        :root {
+            --bg: #050505;
+            --text: #f4f4f4;
+            --border: #333333;
+            --accent: #ffffff;
+            --font-display: 'Oswald', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::selection {
+            background-color: var(--accent);
+            color: var(--bg);
+        }
+
+        /* Sticky Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.5;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(4rem, 10vw, 9rem);
+            font-weight: 700;
+            line-height: 1;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .hero-desc {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            font-weight: 300;
+            max-width: 700px;
+            color: #aaaaaa;
+            margin-bottom: 40px;
+        }
+
+        .contact-pill {
+            display: inline-block;
+            border: 1px solid var(--border);
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            margin-right: 15px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-pill:hover {
+            background: var(--text);
+            color: var(--bg);
+        }
+
+        /* Infinite Marquee */
+        .marquee-wrapper {
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 20px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            display: flex;
+            background-color: var(--text);
+            color: var(--bg);
+        }
+
+        .marquee {
+            display: flex;
+            animation: scroll 20s linear infinite;
+        }
+
+        .marquee span {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            text-transform: uppercase;
+            padding: 0 40px;
+            font-weight: 700;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Sections */
+        section {
+            padding: 120px 0;
+        }
+
+        .section-header {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            text-transform: uppercase;
+            margin-bottom: 60px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+        }
+
+        /* About Grid */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .about-text {
+            font-size: 1.2rem;
+            color: #ccc;
+            font-weight: 300;
+        }
+
+        /* Experience Accordion */
+        .exp-item {
+            border-bottom: 1px solid var(--border);
+            padding: 40px 0;
+            cursor: pointer;
+            transition: padding 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .exp-item:hover {
+            padding-left: 30px;
+        }
+
+        .exp-item:hover .exp-title {
+            color: #888;
+        }
+
+        .exp-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .exp-title {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .exp-company {
+            font-size: 1rem;
+            color: #888;
+            letter-spacing: 1px;
+        }
+
+        .exp-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1), margin 0.6s ease;
+        }
+
+        .exp-item.active .exp-content {
+            max-height: 400px;
+            margin-top: 30px;
+        }
+
+        .exp-content ul {
+            list-style-type: none;
+            padding-left: 20px;
+            border-left: 1px solid #555;
+        }
+
+        .exp-content li {
+            margin-bottom: 15px;
+            color: #bbb;
+            font-size: 0.95rem;
+        }
+
+        /* Bento Grid for Education & Skills */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .bento-box {
+            background-color: #0f0f0f;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .bento-box:hover {
+            transform: translateY(-5px);
+            background-color: #1a1a1a;
+        }
+
+        .bento-box.large {
+            grid-column: span 2;
+        }
+
+        .bento-title {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .bento-desc {
+            font-size: 0.9rem;
+            color: #999;
+        }
+
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .tag {
+            background: #222;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Scroll Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Footer */
+        footer {
+            padding: 80px 0;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-logo {
+            font-family: var(--font-display);
+            font-size: 4rem;
+            text-transform: uppercase;
+            color: #222;
+        }
+
+        @media (max-width: 900px) {
+            .about-grid { grid-template-columns: 1fr; }
+            .bento-grid { grid-template-columns: 1fr; }
+            .bento-box.large { grid-column: span 1; }
+            .exp-top { flex-direction: column; }
+            .exp-company { margin-top: 10px; }
+            nav { padding: 15px 20px; }
+            .nav-links { display: none; } /* Hide links on mobile for simplicity */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">WU Wangbo</div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#skills">Skills</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="container hero reveal">
+        <h1>Digital<br>Marketing<br>& AI.</h1>
+        <p class="hero-desc">
+            Bridging the gap between content creation, big data, and brand strategy. Proven track record in TikTok Shop operations, we-media success, and high-impact social campaigns.
+        </p>
+        <div>
+            <span class="contact-pill">+852 84954388</span>
+            <span class="contact-pill">25414399@life.hkbu.edu.hk</span>
+            <span class="contact-pill">Base: HK / Mainlander</span>
+        </div>
+    </div>
+
+    <!-- Infinite Marquee -->
+    <div class="marquee-wrapper">
+        <div class="marquee">
+            <span>Content Strategy</span><span>•</span>
+            <span>Data Analysis</span><span>•</span>
+            <span>Brand Collabs</span><span>•</span>
+            <span>TikTok Shop</span><span>•</span>
+            <span>Live Planning</span><span>•</span>
+            <span>Content Strategy</span><span>•</span>
+            <span>Data Analysis</span><span>•</span>
+            <span>Brand Collabs</span><span>•</span>
+            <span>TikTok Shop</span><span>•</span>
+            <span>Live Planning</span><span>•</span>
+        </div>
+    </div>
+
+    <div class="container">
+        
+        <!-- About Section -->
+        <section id="about" class="reveal">
+            <h2 class="section-header">The Profile</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    I am a digital marketing specialist with a sharp acumen for social media and a master's focus on Artificial Intelligence and Digital Media. I thrive at the intersection of creative storytelling and data-driven strategy.
+                </div>
+                <div class="about-text">
+                    Beyond shaping multi-million view campaigns and driving GMV for e-commerce, I document my life through dynamic VLOGs and recharge by playing pickleball on weekends. I build strategies that don't just reach audiences, but resonate with them.
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="reveal">
+            <h2 class="section-header">Experience</h2>
+
+            <div class="exp-item active" onclick="toggleExp(this)">
+                <div class="exp-top">
+                    <div class="exp-title">We-media Influencer</div>
+                    <div class="exp-company">@呜哇博 XHS/Douyin // Mar. 2022 - Present</div>
+                </div>
+                <div class="exp-content">
+                    <ul>
+                        <li>Independently manage a lifestyle we-media account, overseeing content selection, brand collaboration, and monetization.</li>
+                        <li>Gained 30k followers/month, published 450+ content pieces (4 hitting 10M+ views), and accumulated 2.18M total likes.</li>
+                        <li>Partnered with 75+ top-tier brands including Alipay, deepening B2C communication expertise.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="exp-item" onclick="toggleExp(this)">
+                <div class="exp-top">
+                    <div class="exp-title">Overseas Marketing</div>
+                    <div class="exp-company">Blue Focus (Shanghai) // Jan. 2025 - Jul. 2025</div>
+                </div>
+                <div class="exp-content">
+                    <ul>
+                        <li>Led full-process brand bidding proposals and oversaw KOL cooperation for beauty and lifestyle sectors.</li>
+                        <li>Created 200+ promotion scripts and optimized global ad campaigns via VSA, GMAX, and PSA.</li>
+                        <li>Facilitated brands' 0-to-1 TikTok cold starts across Southeast Asia and the US market.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="exp-item" onclick="toggleExp(this)">
+                <div class="exp-top">
+                    <div class="exp-title">Social-PR Intern</div>
+                    <div class="exp-company">EASTGARDEN // Oct. 2023 - Jan. 2024</div>
+                </div>
+                <div class="exp-content">
+                    <ul>
+                        <li>Oversaw integrated marketing for new launches based on Florasis' positioning.</li>
+                        <li>Analyzed multi-platform KOL data to select perfectly matched resources and tracked real-time campaign metrics.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="exp-item" onclick="toggleExp(this)">
+                <div class="exp-top">
+                    <div class="exp-title">Content Operations</div>
+                    <div class="exp-company">ByteDance // May 2023 - Sep. 2023</div>
+                </div>
+                <div class="exp-content">
+                    <ul>
+                        <li>Managed official accounts and live broadcasts, driving billions of views for promotional content.</li>
+                        <li>Directed Douyin "Watermelon TV" live broadcasts, ranking Top 1 weekly for 4 consecutive months.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Bento Box Section (Education & Skills) -->
+        <section id="skills" class="reveal">
+            <h2 class="section-header">Background & Stack</h2>
+            
+            <div class="bento-grid">
+                
+                <!-- Edu 1 -->
+                <div class="bento-box large">
+                    <div class="bento-title">Hong Kong Baptist University</div>
+                    <div class="bento-desc">MSc in AI & Digital Media (Sept. 2025 - Present)</div>
+                    <p class="bento-desc" style="margin-top: 15px;">Focusing on Big Data Management, Data Mining, and Global Marketing Strategies to leverage AI in modern media.</p>
+                    <div class="tag-container">
+                        <span class="tag">AI Integration</span>
+                        <span class="tag">Data Mining</span>
+                        <span class="tag">Media Mgmt</span>
+                    </div>
+                </div>
+
+                <!-- Languages -->
+                <div class="bento-box">
+                    <div class="bento-title">Languages</div>
+                    <div class="tag-container">
+                        <span class="tag">Mandarin (Native)</span>
+                        <span class="tag">English (Fluent)</span>
+                        <span class="tag">Cantonese (Conv.)</span>
+                    </div>
+                </div>
+
+                <!-- Edu 2 -->
+                <div class="bento-box">
+                    <div class="bento-title">CU of Zhejiang</div>
+                    <div class="bento-desc">Bachelor in Communication</div>
+                    <div class="bento-desc" style="margin-top: 10px; color: #fff;">Provincial Outstanding Graduate</div>
+                </div>
+
+                <!-- Hard Skills -->
+                <div class="bento-box large">
+                    <div class="bento-title">Tech & Media Stack</div>
+                    <div class="bento-desc">A blend of creative production tools and analytical frameworks to drive complete campaign lifecycles.</div>
+                    <div class="tag-container">
+                        <span class="tag">Python / SQL</span>
+                        <span class="tag">Orange Data</span>
+                        <span class="tag">Video Editing (PR/PS)</span>
+                        <span class="tag">GMV Max</span>
+                        <span class="tag">Spark Ads</span>
+                        <span class="tag">Copywriting</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo">WB.</div>
+            <p style="color: #666; font-size: 0.85rem; margin-top: 20px; text-transform: uppercase; letter-spacing: 1px;">
+                © 2026 WU Wangbo. Designing the Future of Digital Media.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Accordion functionality for Experience
+        function toggleExp(element) {
+            // Optional: Close others
+            document.querySelectorAll('.exp-item').forEach(item => {
+                if(item !== element) item.classList.remove('active');
+            });
+            element.classList.toggle('active');
+        }
+
+        // Scroll Reveal Animation via Intersection Observer
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal').forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
